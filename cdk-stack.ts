@@ -39,16 +39,23 @@ export class CdkStack extends cdk.Stack {
     new cdk.CfnOutput(this, "Bucket", { value: siteBucket.bucketName });
 
     // CloudFront distribution
-    const distribution = new cdk.aws_cloudfront.Distribution(
+    const distribution = new cdk.aws_cloudfront.CloudFrontWebDistribution(
       this,
       `${bucketName}Distribution`,
       {
-        defaultBehavior: {
-          origin: new cdk.aws_cloudfront_origins.S3Origin(siteBucket, {
-            originAccessIdentity: cloudfrontOAI,
-          }),
-        },
-        defaultRootObject: "index.html",
+        originConfigs: [
+          {
+            s3OriginSource: {
+              s3BucketSource: siteBucket,
+              originAccessIdentity: cloudfrontOAI,
+            },
+            behaviors: [
+              {
+                isDefaultBehavior: true,
+              },
+            ],
+          },
+        ],
       }
     );
 
