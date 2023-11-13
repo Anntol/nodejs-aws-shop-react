@@ -36,3 +36,15 @@ Runs tests in console, in browser or with coverage.
 ### `lint`, `prettier`
 
 Runs linting and formatting for all files in `src` folder.
+
+### `cdk:bst`
+
+Deploys the CDK Toolkit staging stack
+
+### `cdk:dpl`
+
+Deploys CDK stack
+
+### `cdk:dst`
+
+Destroys CDK stack
