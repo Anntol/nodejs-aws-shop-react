@@ -35,24 +35,8 @@ axios.interceptors.response.use(
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-      staleTime: Infinity,
-      /*queryFn: async ({ queryKey }) => {
-        const response = await api.get(queryKey[0] as string);
-        return response.data;
-      },*/
-    },
+    queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },
   },
-  /*queryCache: new QueryCache({
-    onError: (error: unknown) => {
-      console.error("cache error: ", error);
-      if (error instanceof AxiosError) {
-        alert(`Something went wrong: ${error.message}`);
-      }
-    },
-  }),*/
 });
 
 if (import.meta.env.DEV) {
